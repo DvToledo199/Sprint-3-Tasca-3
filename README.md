@@ -60,15 +60,15 @@ The process follows a strict order:
 
 ```
 Start
- ↓
+  ↓
 Entrant (optional)
- ↓
+  ↓
 Main course (mandatory)
- ↓
+  ↓
 Dessert or coffee (optional)
- ↓
+  ↓
 Drink (optional)
- ↓
+  ↓
 Build
 ```
 
