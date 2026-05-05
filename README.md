@@ -267,3 +267,134 @@ agent.stockMarketUp(150);
 - The stock market increases  
 - The agent notifies all observers  
 - Each observer receives and processes the message  
+
+---
+
+# • Level 3 - Decorator Pattern
+
+## 📌 Description
+
+In this level, the **Decorator design pattern** is implemented to simulate a customizable Bubble Tea system.
+
+The goal is to dynamically add ingredients (decorators) to a base drink without modifying its original structure.
+
+---
+
+## ⚙️ Functionality
+
+The system allows:
+
+- Creating base drinks:
+  - Latte (3.50€)
+  - Matcha (3.20€)
+  - Tea (3.00€)
+- Adding multiple ingredients dynamically:
+  - Ice (+0.25€)
+  - Sugar (+0.30€)
+  - Tapioca (+0.50€)
+  - Flavor (+0.60€ per flavor)
+- Combining multiple decorators in any order
+- Generating a final description and total cost of the drink
+
+---
+
+## 🧠 Design
+
+The following elements have been implemented:
+
+### **Component Interface (BubbleTea)**
+- Defines:
+  - `getDescription()`
+  - `getCost()`
+
+---
+
+### **Concrete Components (Base Drinks)**
+- `LatteBase`
+- `MatchaBase`
+- `TeaBase`
+
+Each provides a base description and cost.
+
+---
+
+### **Decorator Base (BubbleTeaDecorator)**
+- Abstract class that implements `BubbleTea`
+- Contains a reference to another `BubbleTea`
+- Delegates calls to the wrapped object
+
+---
+
+### **Concrete Decorators**
+- `Ice`
+- `Sugar`
+- `Tapioca`
+- `Flavor`
+
+Each decorator:
+- Extends `BubbleTeaDecorator`
+- Adds its own cost
+- Extends the description
+
+---
+
+## 🔄 Flow
+
+```text
+Create base drink
+Wrap with decorators
+Each decorator adds behavior
+Final object returns total cost and description
+```
+
+---
+
+## 🔑 Key Concept
+
+Instead of creating multiple subclasses for every possible combination, the system wraps objects dynamically.
+
+Each decorator adds its behavior on top of the previous one:
+
+```
+Flavor
+  └── Sugar
+        └── Tapioca
+              └── Latte
+```
+
+---
+
+## 🧪 Tests
+
+Unit tests verify:
+
+- Base drink creation
+- Single decorator addition
+- Multiple decorators combination
+- Multiple flavors stacking
+- Complex combinations of ingredients
+
+---
+
+## 💡 Usage Example
+
+```java
+BubbleTea tea = new LatteBase();
+tea = new Tapioca(tea);
+tea = new Sugar(tea);
+tea = new Flavor(tea, "Mango");
+
+System.out.println(tea.getDescription());
+System.out.println(tea.getCost());
+```
+
+---
+
+## 🧠 Example Explanation
+
+- A base Latte is created  
+- Tapioca is added  
+- Sugar is added  
+- A flavor is added  
+- Each decorator wraps the previous one  
+- The final cost and description are calculated dynamically  
